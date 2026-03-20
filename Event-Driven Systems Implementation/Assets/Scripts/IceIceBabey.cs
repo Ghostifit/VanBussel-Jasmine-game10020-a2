@@ -7,13 +7,13 @@ using UnityEngine.Events;
 public class IceIceBabey : MonoBehaviour
 {
     // Start is called before the first frame update
-    public UnityEvent ZappedWater;
+    public UnityEvent Melt;
     bool hasCollided = false;
     public ZappedWater LinkedScript;
     void Start()
     {
         LinkedScript = FindObjectOfType<ZappedWater>();
-        ZappedWater.AddListener(LinkedScript.DeadOlaf);
+        Melt.AddListener(LinkedScript.DeadOlaf);
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class IceIceBabey : MonoBehaviour
             GameObject Player = FindObjectOfType<PlayerController>().GameObject();
             if (Mathf.Abs(Player.transform.position.x - transform.position.x) + Mathf.Abs(Player.transform.position.y - transform.position.y) < 3)
             {
-                Melt();
+                Melted();
             }
         }
 
@@ -41,11 +41,11 @@ public class IceIceBabey : MonoBehaviour
         this.GetComponent<SpriteRenderer>().enabled = true;
     }
 
-    public void Melt()
+    public void Melted()
     {
         if (hasCollided)
         {
-            ZappedWater.Invoke();
+            Melt.Invoke();
         }
         Destroy(gameObject);
     }

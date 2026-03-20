@@ -9,7 +9,7 @@ public class ZappedWater : MonoBehaviour
     // Start is called before the first frame update
     public UnityEvent OpenTheDoor;
     public Sprite Zapped;
-
+    bool WaterInGrate = false;
     void Start()
     {
         
@@ -18,19 +18,24 @@ public class ZappedWater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (WaterInGrate)
         {
-            GameObject Player = FindObjectOfType<PlayerController>().GameObject();
-            if (Mathf.Abs(Player.transform.position.x - transform.position.x) + Mathf.Abs(Player.transform.position.y - transform.position.y) < 3)
+            if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                Electrified();
+                GameObject Player = FindObjectOfType<PlayerController>().GameObject();
+                if (Mathf.Abs(Player.transform.position.x - transform.position.x) + Mathf.Abs(Player.transform.position.y - transform.position.y) < 3)
+                {
+                    Electrified();
+                }
             }
         }
+        
     }
 
     public void DeadOlaf()
     {
         this.GetComponent<SpriteRenderer>().enabled = true;
+        WaterInGrate = true;
     }
 
     public void Electrified()

@@ -47,7 +47,7 @@ public class Water : MonoBehaviour
     }
     public void ToggleWater()
     {
-        Debug.Log("ooo its wet");
+        //Debug.Log("ooo its wet");
         this.GetComponent<SpriteRenderer>().enabled = true;
 
         timeRemaining = 4;
