@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,7 +19,11 @@ public class Button : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E))
         {
-            Pressed();
+            GameObject Player = FindObjectOfType<PlayerController>().GameObject();
+            if (Mathf.Abs(Player.transform.position.x - transform.position.x) + Mathf.Abs(Player.transform.position.y - transform.position.y) < 3)
+            {
+                Pressed();
+            }
         }
     }
 
